@@ -59,6 +59,7 @@ def add_task():
         return redirect(url_for("home"))
     return render_template("add_task.html", categories=categories)
 
+
 @app.route("/add_task/<int:task_id>", methods=["GET", "POST"])
 def edit_task(task_id):
     task = Task.query.get_or_404(task_id)
@@ -70,7 +71,8 @@ def edit_task(task_id):
         task.due_date = request.form.get("due_date")
         task.category_id = request.form.get("category_id")
         db.session.commit()
-    return render_template("edit_task.html",task=task, categories=categories)
+    return render_template("edit_task.html", task=task, categories=categories)
+
 
 @app.route("/delete_task/<int:task_id>")
 def delete_task(task_id):
